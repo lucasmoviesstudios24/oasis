@@ -128,19 +128,15 @@ export class Engine {
     this.floatingTexts.push({ text, x, y, color, t: 1200 });
   }
 
-getImage(key) {
-  if (!key) return null;
-  const src = key.startsWith("assets/") || key.startsWith("/assets/")
-    ? (key.startsWith("/") ? key : `/${key}`)
-    : `/assets/${key}`;
-  if (!this.images.has(src)) {
-    const im = new Image();
-    im.src = src;
-    this.images.set(src, im);
+  getImage(key) {
+    if (!key) return null;
+    // normalize asset key (allow "characters/..." or "/assets/characters/...")
+    const src = key.startsWith("assets/") || key.startsWith("/assets/") ? (key.startsWith("/")?key:`/${key}`) : `/assets/${key}`;
+    if (!this.images.has(src)) {
+      const im = new Image(); im.src = src; this.images.set(src, im);
+    }
+    return this.images.get(src);
   }
-  const im = this.images.get(src);
-  return (im.complete && im.naturalWidth > 0) ? im : null;
-}
 
   // Biome bootstrapping
   initBiome() {
