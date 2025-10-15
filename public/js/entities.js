@@ -16,7 +16,7 @@ export class Sprite {
 
 export class Player extends Sprite {
   constructor(engine, opts) {
-    super(engine, Object.assign({ w: 96, h: 96, speed: 190/60 }, opts));
+    super(engine, Object.assign({ w: 56, h: 56, speed: 190/60 }, opts));
     this.attackCooldown = 0;
     this.rangeCooldown = 0;
   }
@@ -47,29 +47,12 @@ export class Player extends Sprite {
     this.attackCooldown = Math.max(0, this.attackCooldown - dt*1000);
     this.rangeCooldown = Math.max(0, this.rangeCooldown - dt*1000);
   }
-
-
   draw(ctx) {
     const moving = (Math.abs(this.vx) + Math.abs(this.vy)) > 0.1;
-    const key = `characters/main_${moving ? 'walking' : 'stopped'}${moving ? `_${this.facing}` : ''}.png`;
+    const key = `characters/main_${moving?'walking':'stopped'}${moving?`_${this.facing}`:""}.png`;
     this.imgKey = key;
-
-    // Draw a visible placeholder + shadow behind the sprite so you always see the player
-    ctx.save();
-    ctx.globalAlpha = 0.75;
-    ctx.fillStyle = '#00ff88';
-    ctx.fillRect(this.x - this.w/2, this.y - this.h/2, this.w, this.h);
-    ctx.globalAlpha = 0.35;
-    ctx.fillStyle = '#000';
-    ctx.beginPath();
-    ctx.ellipse(this.x, this.y + this.h/2 - 8, this.w/2, 10, 0, Math.PI*2);
-    ctx.fill();
-    ctx.restore();
-
-    // Now draw the actual PNG on top (if it's ready)
     super.draw(ctx);
   }
-
 }
 
 export class Pot extends Sprite {
