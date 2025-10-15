@@ -481,6 +481,13 @@ export class Engine {
       for (let x=0;x<this.width;x+=64) for (let y=0;y<this.height;y+=64) ctx.fillRect(x,y,62,62);
     }
     for (const e of this.entities) e.draw && e.draw(ctx);
+    // after: for (const e of this.entities) e.draw && e.draw(ctx);
+	ctx.save();
+	ctx.strokeStyle = "rgba(255,255,255,.9)";
+	ctx.lineWidth = 2;
+	ctx.strokeRect(this.player.x - 28, this.player.y - 28, 56, 56);
+	ctx.restore();
+
     // Draw aim reticle if ranged selected
     if (this.state.data.player.range) {
       ctx.save();
