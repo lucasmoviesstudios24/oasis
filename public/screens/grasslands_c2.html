@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Oasis — Grasslands C2</title>
+  <link rel="stylesheet" href="/css/oasis.css"/>
+</head>
+<body data-screen="grasslands_c2" data-biome="grasslands" data-temple="0">
+  <div class="game-root">
+    <canvas id="game-canvas" width="1280" height="720"></canvas>
+    <div class="ui">
+      <div class="hearts row"></div>
+      <div class="coins row"><img src="/assets/layout/coin.png" width="28" height="28"/><div class="val">0</div></div>
+      <div class="slots"><div class="slot"></div><div class="slot"></div></div>
+      <div class="cards"><div class="slot"></div><div class="slot"></div><div class="slot"></div></div>
+      <div class="hint-mini">WASD move • I interact • E inventory • M map • Left click melee • Space range (aim with arrows)</div>
+      <div id="bossbar"><div class="fill"></div></div>
+    </div>
+    <div id="dialog"><div class="name"></div><div class="text"></div><button class="btn">Close</button></div>
+    <div id="map-overlay" class="ui" style="display:none"><div class="modal-card"><div class="body"></div></div></div>
+    <div id="inv-overlay" class="ui" style="display:none"><div class="modal-card"><h3>Inventory</h3><div class="body"></div></div></div>
+    <div id="shop-overlay" class="ui" style="display:none"><div class="modal-card"><div class="body"></div></div></div>
+    <div id="pause-overlay" class="ui" style="display:none"><div class="modal-card"><div class="body"></div></div></div>
+  </div>
+  <script type="module" src="/js/screens.js"></script>
+</body>
+</html>

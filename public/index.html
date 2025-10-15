@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Oasis — Start</title>
+  <link rel="stylesheet" href="/css/oasis.css"/>
+  <style>
+    html, body { height:100%; margin:0; background:#000; }
+    .start-wrap { position:relative; width:100%; height:100%; display:grid; place-items:center; overflow:hidden; }
+    video { width:100vw; height:100vh; object-fit:cover; }
+    .hint { position:absolute; bottom:3rem; color:#fff; font-family:ui-sans-serif, system-ui, sans-serif; opacity:0.85; background:rgba(0,0,0,.4); padding:.5rem 1rem; border-radius:.5rem; }
+  </style>
+</head>
+<body>
+  <div class="start-wrap">
+    <video id="intro" autoplay muted loop playsinline src="/assets/start_game.mp4"></video>
+    <div class="hint">Press any key to begin</div>
+  </div>
+  <script>
+    window.addEventListener('keydown', () => {
+      window.location.href = '/screens/grasslands_a4.html';
+    }, { once: true });
+  </script>
+</body>
+</html>
