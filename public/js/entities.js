@@ -47,12 +47,25 @@ export class Player extends Sprite {
     this.attackCooldown = Math.max(0, this.attackCooldown - dt*1000);
     this.rangeCooldown = Math.max(0, this.rangeCooldown - dt*1000);
   }
-  draw(ctx) {
-    const moving = (Math.abs(this.vx) + Math.abs(this.vy)) > 0.1;
-    const key = `characters/main_${moving?'walking':'stopped'}${moving?`_${this.facing}`:""}.png`;
-    this.imgKey = key;
-    super.draw(ctx);
-  }
+draw(ctx) {
+  // Always draw a visible placeholder so we can see the player
+  ctx.save();
+  ctx.globalAlpha = 1;                  // ensure not transparent
+  ctx.fillStyle = "#ff00aa";            // loud magenta box
+  ctx.fillRect(this.x - this.w/2, this.y - this.h/2, this.w, this.h);
+
+  // simple shadow
+  ctx.globalAlpha = 0.35;
+  ctx.fillStyle = "#000";
+  ctx.beginPath();
+  ctx.ellipse(this.x, this.y + this.h/2 - 8, this.w/2, 10, 0, 0, Math.PI*2);
+  ctx.fill();
+  ctx.restore();
+
+  // (Disable image drawing for now)
+  // super.draw(ctx);
+}
+
 }
 
 export class Pot extends Sprite {
