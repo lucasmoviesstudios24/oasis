@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Oasis — Start</title>
+<style>
+html,body{height:100%;margin:0;background:#000;overflow:hidden;}
+.wrap{position:fixed;inset:0;display:grid;place-items:center;}
+video{width:100%;height:100%;object-fit:cover;filter:brightness(0.9) contrast(1.05);}
+.hint{position:fixed;left:0;right:0;bottom:5vh;text-align:center;color:#fff;font:600 20px system-ui;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+</style></head>
+<body>
+<div class="wrap">
+  <video id="intro" autoplay muted loop playsinline>
+    <source src="assets/start_game.mp4" type="video/mp4"/>
+  </video>
+</div>
+<div class="hint">Press any key to start</div>
+<script>
+addEventListener('keydown', ()=>{ location.href = 'game.html?biome=grasslands&cell=a4'; }, {once:true});
+addEventListener('pointerdown', ()=>{ location.href = 'game.html?biome=grasslands&cell=a4'; }, {once:true});
+</script>
+</body></html>

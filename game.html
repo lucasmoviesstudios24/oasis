@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Oasis — Game</title>
+<style>
+:root{ --w:1280px; --h:720px;}
+html,body{height:100%;margin:0;background:#000;display:grid;place-items:center;overflow:hidden;}
+#stage{position:relative;width:var(--w);height:var(--h);background:#000;border-radius:16px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.6)}
+canvas#game{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;}
+.hud{position:absolute;inset:0;pointer-events:none;font:600 16px system-ui;color:#fff}
+.hearts{position:absolute;left:24px;top:16px;display:flex;gap:16px}
+.heart{width:40px;height:34px;background:url('assets/layout/heart.png') center/contain no-repeat;filter:drop-shadow(0 2px 4px rgba(0,0,0,.6))}
+.slots-left{position:absolute;left:36px;bottom:36px;display:flex;gap:28px}
+.slot2{width:120px;height:120px;border-radius:24px;background:linear-gradient(145deg,#bcd7de,#7b7f82);opacity:.92;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25);}
+.slots-right{position:absolute;right:24px;bottom:24px;display:flex;gap:24px;align-items:flex-end}
+.slot3{width:120px;height:120px;border-radius:24px;background:linear-gradient(145deg,#d24e4e,#5e1f1f);opacity:.92;box-shadow:inset 0 0 0 2px rgba(255,255,255,.15);}
+.coins{pointer-events:none;position:absolute;right:120px;bottom:136px;width:240px;height:48px;border-radius:24px;background:#e3b62b;
+  box-shadow:inset 0 -4px 0 rgba(0,0,0,.15),0 2px 20px rgba(0,0,0,.35);display:flex;align-items:center;padding:0 14px;gap:10px;color:#000;font-weight:700}
+.coins:before{content:'';display:block;width:24px;height:24px;background:url('assets/layout/coin.png') center/contain no-repeat}
+.coins small{margin-left:auto;background:rgba(255,255,255,.3);border-radius:50%;width:28px;height:28px;display:grid;place-items:center;font-size:14px}
+.dialog{position:absolute;left:50%;bottom:40px;transform:translateX(-50%);width:min(880px,90%);background:rgba(0,0,0,.7);color:#fff;border:2px solid rgba(255,255,255,.35);border-radius:16px;padding:16px 20px;display:none}
+.dialog .who{font-weight:800;margin-bottom:6px;opacity:.9}
+.dialog .btn{pointer-events:auto;display:inline-block;margin-top:10px;background:#ffd24a;color:#000;padding:8px 14px;border-radius:10px;font-weight:800;cursor:pointer}
+.mapOverlay,.inventory{position:absolute;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center}
+.inventory .panel{width:min(980px,90%);height:min(560px,80%);background:#111;border:2px solid #444;border-radius:16px;padding:16px;color:#fff;overflow:auto}
+.mapOverlay img{max-width:90%;max-height:90%;border:3px solid #fff;border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.6)}
+.toast{position:absolute;left:50%;top:18px;transform:translateX(-50%);background:rgba(0,0,0,.7);color:#fff;padding:8px 12px;border-radius:8px;display:none}
+</style></head>
+<body>
+<div id="stage">
+  <canvas id="game" width="1280" height="720"></canvas>
+  <div class="hud">
+    <div class="hearts" id="hearts"></div>
+    <div class="slots-left">
+      <div class="slot2" id="meleeSlot" title="Melee"></div>
+      <div class="slot2" id="rangeSlot" title="Range"></div>
+    </div>
+    <div class="slots-right">
+      <div class="coins" id="coinHud"><span id="coinAmt">0</span><small>¢</small></div>
+      <div class="slot3" title="Ability 1"></div>
+      <div class="slot3" title="Ability 2"></div>
+      <div class="slot3" title="Ability 3"></div>
+    </div>
+    <div class="dialog" id="dialog"><div class="who" id="dialogWho"></div><div class="text" id="dialogText"></div><div class="btn" id="dialogBtn">OK</div></div>
+    <div class="mapOverlay" id="mapOverlay"></div>
+    <div class="inventory" id="inventory"><div class="panel"><h2>Inventory (E)</h2><div id="inventoryList"></div></div></div>
+    <div class="toast" id="toast"></div>
+  </div>
+</div>
+<script src="engine.js"></script>
+</body></html>
